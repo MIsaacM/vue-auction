@@ -28,6 +28,11 @@ npm run dev
 npm run build
 ```
 
+### Compile for Development (not minified)
+
+```sh
+npm run build-dev
+```
 ### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
 
 ```sh
