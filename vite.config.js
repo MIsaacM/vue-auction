@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
@@ -32,6 +33,11 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: false,
       sourcemap: false,
       minify: isProd,
+    },
+    test: {
+      name: 'Tests',
+      root: './src',
+      environment: 'jsdom',
     },
   };
 });
