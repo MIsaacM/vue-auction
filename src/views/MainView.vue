@@ -20,36 +20,21 @@
     </v-card-text>
   </MainLayout>
 
-  <v-dialog
-      v-model="openDialog"
-      width="auto"
-    >
-      <v-card>
-        <v-card-title class="text-h5">
-          <span v-if="isPurchaseSuccessful()">Congratulations!</span>
-          <span v-else>There was no deal</span>
-        </v-card-title>
-        <v-card-text>
-          <div>Purchase offer was {{ buyerAmount }}€.</div>
-          <div>Minimum accepted was {{ sellerAmount }}€.</div>
-        </v-card-text>
-        <v-card-text>
-          The temperature in Huesca is XXºC
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+  <AuctionResultDialog v-model="openDialog" :buyerAmount="buyerAmount" :sellerAmount="sellerAmount"/>
 </template>
 
 <script>
 import MainLayout from '../layouts/MainLayout.vue';
 import BuyerForm from '../components/BuyerForm.vue';
 import SellerForm from '../components/SellerForm.vue';
+import AuctionResultDialog from '../components/AuctionResultDialog.vue';
 
 export default {
   components: {
     MainLayout,
     BuyerForm,
     SellerForm,
+    AuctionResultDialog,
   },
   data() {
     return {
@@ -60,6 +45,7 @@ export default {
       sellerIsValid: false,
       cardTitle: '',
       cardText: '',
+      weatherData: {},
     };
   },
   computed: {
@@ -68,14 +54,11 @@ export default {
         return this.buyerIsValid && this.sellerIsValid;
       },
       set() {
+        this.buyerAmount = null,
+        this.sellerAmount = null,
         this.buyerIsValid = false;
         this.sellerIsValid = false;
       },
-    },
-  },
-  methods: {
-    isPurchaseSuccessful() {
-      return this.buyerAmount && this.sellerAmount && this.buyerAmount >= this.sellerAmount;
     },
   },
 };

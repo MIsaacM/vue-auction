@@ -19,6 +19,6 @@ import HelloWorld from '../HelloWorld.vue';
 describe('Something', () => {
   it('a...', () => {
     const wrapper = mount(HelloWorld);
-    expect(wrapper.html()).toContain('You’ve successfully created a project');
+    expect(wrapper.html()).toContain('Welcome to the Vuetify 3 Beta');
   });
 });

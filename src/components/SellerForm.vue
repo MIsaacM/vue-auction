@@ -1,5 +1,5 @@
 <template>
-  <v-form :class="{'d-none': isSellerAmountValid}" @submit.prevent>
+  <v-form :class="{'d-none': isValid}" @submit.prevent>
     <v-text-field
       v-model="sellerAmount"
       placeholder="My minimum sale price"
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      isSellerAmountValid: false,
       sellerRules: [
         value => {
           return value && value > 0 ? true : 'Minimum sale price is mandatory to continue';
@@ -39,8 +38,7 @@ export default {
   },
   methods: {
     validateSellerAmount() {
-      this.isSellerAmountValid = this.sellerAmount && this.sellerAmount > 0 || false;
-      this.$emit('update:isValid', this.isSellerAmountValid);
+      this.$emit('update:isValid', this.sellerAmount && this.sellerAmount > 0 || false);
     },
   },
 };

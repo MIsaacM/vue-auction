@@ -1,5 +1,5 @@
 <template>
-  <v-form :class="{'d-none': isBuyerAmountValid}" @submit.prevent>
+  <v-form :class="{'d-none': isValid}" @submit.prevent>
     <v-text-field
       v-model="buyerAmount"
       placeholder="My maximum purchase price"
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      isBuyerAmountValid: false,
       buyerRules: [
         value => {
           return value && value > 0 ? true : 'Maximum purchase price is mandatory to continue';
@@ -39,8 +38,7 @@ export default {
   },
   methods: {
     validateBuyerAmount() {
-      this.isBuyerAmountValid = this.buyerAmount && this.buyerAmount > 0;
-      this.$emit('update:isValid', this.isBuyerAmountValid);
+      this.$emit('update:isValid', this.buyerAmount && this.buyerAmount > 0);
     },
   },
 };
