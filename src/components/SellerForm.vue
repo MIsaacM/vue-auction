@@ -1,6 +1,7 @@
 <template>
   <v-form :class="{'d-none': isValid}" @submit.prevent>
     <v-text-field
+      class="mt-3"
       v-model="sellerAmount"
       placeholder="My minimum sale price"
       :rules="sellerRules"
@@ -8,7 +9,7 @@
       single-line
       type="number"
     />
-    <v-btn type="submit" block class="mt-2" @click="validateSellerAmount">Send</v-btn>
+    <v-btn type="submit" variant="tonal" block class="bg-teal-lighten-2 text-white mt-2" @click="validateSellerAmount">Send</v-btn>
   </v-form>
 </template>
 

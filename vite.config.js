@@ -39,9 +39,13 @@ export default defineConfig(({ mode }) => {
       minify: isProd,
     },
     test: {
+      globals: true,
+      environment: 'jsdom',
+      deps: {
+        inline: [ 'vuetify' ],
+      },
       name: 'Tests',
       root: './src',
-      environment: 'jsdom',
     },
   };
 });

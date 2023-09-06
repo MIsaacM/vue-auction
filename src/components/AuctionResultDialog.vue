@@ -3,16 +3,18 @@
     v-model="openDialog"
     width="auto"
   >
-    <v-card>
-      <v-card-title class="text-h5">
+    <v-card class="pa-6">
+      <v-card-title class="text-h5 mb-3 text-center font-weight-bold">
         <span v-if="isPurchaseSuccessful()">Congratulations!</span>
         <span v-else>There was no deal</span>
       </v-card-title>
-      <v-card-text>
+      <v-divider></v-divider>
+      <v-card-text class=" my-3">
         <div>Purchase offer was {{ buyerAmount }}€.</div>
         <div>Minimum accepted was {{ sellerAmount }}€.</div>
       </v-card-text>
-      <v-card-text>
+      <v-divider></v-divider>
+      <v-card-text class="card_text-temerature font-weight-light mt-3">
         The temperature in {{ weatherData.name || 'unknown' }} is {{ weatherData.main?.temp || 'unknown'}}ºC
       </v-card-text>
     </v-card>
@@ -57,4 +59,7 @@ export default {
 </script>
 
 <style scoped>
+.card_text-temerature {
+  font-size: 12px !important;
+}
 </style>

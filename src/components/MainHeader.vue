@@ -1,6 +1,6 @@
 <template>
   <div class="main_header">
-    <div class="main_header-logo">
+    <div class="main_header-logo text-teal-lighten-2">
       VUE-AUCTION
     </div>
   </div>

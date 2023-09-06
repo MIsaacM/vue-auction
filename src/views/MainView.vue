@@ -1,23 +1,27 @@
 <template>
   <MainLayout>
-    <v-tabs
-      v-model="tabSelected"
-      align-tabs="title"
-    >
-      <v-tab>Buyer</v-tab>
-      <v-tab>Seller</v-tab>
-    </v-tabs>
+    <v-window class="d-flex justify-center">
+      <v-card  variant="outlined" class="mt-16">
+        <v-tabs
+          v-model="tabSelected"
+          fixed-tabs
+          >
+          <v-tab>Buyer</v-tab>
+          <v-tab>Seller</v-tab>
+        </v-tabs>
 
-    <v-card-text>
-      <v-window v-model="tabSelected">
-        <v-window-item>
-          <BuyerForm v-model="buyerAmount" v-model:isValid="buyerIsValid"/>
-        </v-window-item>
-        <v-window-item>
-          <SellerForm v-model="sellerAmount" v-model:isValid="sellerIsValid"/>
-        </v-window-item>
-      </v-window>
-    </v-card-text>
+        <v-card-text class="">
+          <v-window v-model="tabSelected">
+            <v-window-item>
+              <BuyerForm v-model="buyerAmount" v-model:isValid="buyerIsValid"/>
+            </v-window-item>
+            <v-window-item>
+              <SellerForm v-model="sellerAmount" v-model:isValid="sellerIsValid"/>
+            </v-window-item>
+          </v-window>
+        </v-card-text>
+      </v-card>
+    </v-window>
   </MainLayout>
 
   <AuctionResultDialog v-model="openDialog" :buyerAmount="buyerAmount" :sellerAmount="sellerAmount"/>
@@ -43,9 +47,6 @@ export default {
       buyerIsValid: false,
       sellerAmount: null,
       sellerIsValid: false,
-      cardTitle: '',
-      cardText: '',
-      weatherData: {},
     };
   },
   computed: {
@@ -61,8 +62,28 @@ export default {
       },
     },
   },
+  watch: {
+    buyerIsValid(newValue) {
+      if (newValue) {
+        this.tabSelected = 1;
+      }
+    },
+    sellerIsValid(newValue) {
+      if (newValue) {
+        this.tabSelected = 0;
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
+.v-card {
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.v-card-text {
+  min-height: 150px;
+}
 </style>
